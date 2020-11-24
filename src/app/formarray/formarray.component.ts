@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, PatternValidator, Validators, FormArray } from '@angular/forms';
+import { ok } from 'assert';
 import { from } from 'rxjs';
 
 
@@ -16,6 +17,11 @@ export class FormarrayComponent implements OnInit {
 
   registrationForm: FormGroup;
   submited: boolean = false;
+  FormArray: any;
+  public users: [];
+  public user;
+  
+  
  
   constructor() {
 
@@ -54,5 +60,23 @@ export class FormarrayComponent implements OnInit {
   
   onAddexppros() {
     (<FormArray>this.registrationForm.get('exppros')).push(new FormControl(''))
+  }
+
+  // fonction supprimer champ skills
+  
+  onsuppskills(index: number){
+    (<FormArray>this.registrationForm.get('skills')).removeAt(index);
+    
+  }
+  // fonction supprimer champ experience professionnelle
+  
+  onsuppexppros(index: number){
+    (<FormArray>this.registrationForm.get('exppros')).removeAt(index);
+  }
+  // fonction save les données dans le tableau
+  
+  onsavetab(index: number){
+    
+    (<FormArray><unknown>this.users).push(this.user);
   }
 }

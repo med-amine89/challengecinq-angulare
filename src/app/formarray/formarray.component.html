@@ -1,4 +1,5 @@
-<div class="container mt-2 col-lg-4 bg-light">
+<div class="container mt-2 bg-light col-lg-6">
+
     <p><strong> Formulaire avec FormControl et Formgroup</strong></p>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         {{ registrationForm.value | json }}
@@ -29,6 +30,7 @@
                     eight and different caracters</small>
             </div>
         </div>
+
         <!-- Name -->
         <div class="form-group">
             <label>Name</label>
@@ -40,6 +42,7 @@
                     required</small>
             </div>
         </div>
+
         <!-- Lastname -->
         <div class="form-group">
             <label>Lastame</label>
@@ -51,49 +54,76 @@
                     required</small>
             </div>
         </div>
+
         <!-- skills -->
         <div class="form-group" formArrayName="skills">
             <label>skills</label>
-            <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddskills()">+ Add skills</button>
-            <input *ngFor="let skill of registrationForm.get('skills').controls; let i=index" type="text" class="form-control mt-2" formControlName={{i}}>
+            <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddskills(index)">+ Add
+                skills</button>
+            <input *ngFor="let skill of registrationForm.get('skills').controls; let i=index" type="text"
+                class="form-control mt-2" formControlName={{i}}>
+
+            <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('skills').length">
+            <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppskills(i)">- Delete</button>
+
             <input [ngClass]="{'is-invalid': submited && registrationForm.get('skills').errors, 
             'is-valid': submited && !registrationForm.get('skills').errors}" type="text" class="form-control mt-2"
                 formControlName="skills">
             <div *ngIf="registrationForm.get('skills').invalid && registrationForm.get('skills').touched">
                 <small *ngIf="registrationForm.get('skills').errors.required" class="text-danger">Skills is
-                    required</small>  
+                    required</small>
             </div>
         </div>
+
         <!-- Experiences Professionnelles -->
         <div class="form-group" formArrayName="exppros">
             <label>Expériences Professionnelles</label>
-            <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddexppros()">+ Add Expérience</button>
-            <input *ngFor="let exppro of registrationForm.get('exppros').controls; let i=index" type="text" class="form-control mt-2" formControlName={{i}}>
+
+            <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddexppros()">+ Add
+                Expérience</button>
+            <input *ngFor="let exppro of registrationForm.get('exppros').controls; let i=index" type="text"
+                class="form-control mt-2" formControlName={{i}}>
+
+            <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('exppros').length">
+            <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppexppros(i)">- Delete</button>
+
             <input [ngClass]="{'is-invalid': submited && registrationForm.get('exppros').errors, 
             'is-valid': submited && !registrationForm.get('exppros').errors}" type="text" class="form-control mt-2"
                 formControlName="exppros">
             <div *ngIf="registrationForm.get('exppros').invalid && registrationForm.get('exppros').touched">
                 <small *ngIf="registrationForm.get('exppros').errors.required" class="text-danger">Expérience pro is
-                    required</small>  
+                    required</small>
             </div>
-            </div>
+        </div>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="button" class="btn btn-info mx-2" (click)="onsavetab(i)">Save Tab</button>
     </form>
+    <br>
+
     <!-- TABLEAU -->
     <h1>Tableau des informations</h1>
-      <table class="table">
+    <table class="table">
         <tbody>
-        <thead class="thead-light">
-          <tr>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Experience Professionnelle</th>
-          </tr>
-        </thead> 
+                <tr>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Skills</th>
+                    <th>Expériences Professionnelles</th>
+                </tr>
         </tbody>
-      </table>
-
+        <tbody>
+                <tr *ngFor="let user of users; let i=index">
+                    <td>{{user.email}}.value</td>
+                    <td>{{user.password}}.value</td>
+                    <td>{{user.name}}.value</td>
+                    <td>{{user.lastname}}.value</td>
+                    <td>{{user.skills}}.value</td>
+                    <td>{{user.exppros}}.value</td>
+                </tr>
+            
+        </tbody>
+    </table>
 </div>
