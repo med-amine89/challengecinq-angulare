@@ -19,7 +19,8 @@ export class FormarrayComponent implements OnInit {
   submited: boolean = false;
   FormArray: any;
   registration: any;
-  public tab: [];
+  tab: any;
+  
 
 
 
@@ -96,13 +97,12 @@ export class FormarrayComponent implements OnInit {
   }
 
   // Ajouter les donnes localstorage dans le TABLEAU tab
-  onsavetab(){
-    
-    tab.push(this.tab);
-    localStorage.setItem('users', JSON.stringify(this.tab));
-   
-   
-  }
+
+        onsavetab(){
+          this.tab = JSON.parse(localStorage.getItem('user'))
+
+        
+        }
  
 
   } 
