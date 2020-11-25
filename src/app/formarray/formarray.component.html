@@ -1,6 +1,6 @@
 <div class="container mt-2 bg-light col-lg-6">
 
-    <p><strong> Formulaire avec FormControl et Formgroup</strong></p>
+    <p><strong> Formulaire avec FormControl / Formgroup / FormArray</strong></p>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         {{ registrationForm.value | json }}
         <!-- input email -->
@@ -97,33 +97,35 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
-        <button type="button" class="btn btn-info mx-2" (click)="onsavetab(i)">Save Tab</button>
+        <button type="button" class="btn btn-info mx-2" (click)="onsavejson()">Save Json</button>
+        <button type="submit" class="btn btn-warning" (click)="onsavetab()">Save Tab</button>
     </form>
+</div>
     <br>
 
-    <!-- TABLEAU -->
-    <h1>Tableau des informations</h1>
-    <table class="table">
+    <!-- Tableau -->
+    <div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-light">
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Name</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Skills</th>
+                <th scope="col">Expérience Professionnelle</th>
+            </tr>
+        </thead>
         <tbody>
-                <tr>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Skills</th>
-                    <th>Expériences Professionnelles</th>
-                </tr>
-        </tbody>
-        <tbody>
-                <tr *ngFor="let user of users; let i=index">
-                    <td>{{user.email}}.value</td>
-                    <td>{{user.password}}.value</td>
-                    <td>{{user.name}}.value</td>
-                    <td>{{user.lastname}}.value</td>
-                    <td>{{user.skills}}.value</td>
-                    <td>{{user.exppros}}.value</td>
-                </tr>
-            
+            <tr>
+            <tr *ngFor="let key of tab; let i = index" class="table-active">
+                <td>{{key.email}}</td>
+                <td>{{key.password}}</td>
+                <td>{{key.name}}</td>
+                <td>{{key.lastname}}</td>
+                <td>{{key.skills}}</td>
+                <td>{{key.exppros}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
