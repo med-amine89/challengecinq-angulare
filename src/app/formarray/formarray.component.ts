@@ -41,7 +41,7 @@ export class FormarrayComponent implements OnInit {
     });
 
   }
-
+// 2eme methode skills et exppros pour add d'apres Hatem 
   get skills(): FormArray
   {
     return this.registrationForm.get('skills') as FormArray;
@@ -95,6 +95,7 @@ export class FormarrayComponent implements OnInit {
     let users = JSON.parse(localStorage.getItem('user')) || [];
     users.push(this.registrationForm.value);
     localStorage.setItem('user', JSON.stringify(users));
+    
 
     // if(localStorage.getItem('tarchoun')==null){
     //   localStorage.setItem('tarchoun', JSON.stringify([this.registrationForm.value]));

@@ -61,21 +61,14 @@
             <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddskills()">+ Add
                 skills</button>
             <div *ngFor="let skill of skills.controls; let i=index">
-                <input type="text" class="form-control mt-2" [formControlName]="i">
+                <input type="text" class="form-control mt-2" [formControlName]="i" [ngClass]="{'is-invalid': submited && skill.errors, 
+                'is-valid': submited && !skill.errors}">
+                <div class="invalid-feedback d-block" *ngIf="submited && skill.errors">
+                    <small *ngIf="skill.errors.required">
+                        Skills number {{i}} is required.</small>
+                </div>
                 <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppskills(i)">Delete</button>
             </div>
-
-
-            <!-- <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('skills').length"> -->
-
-            <!-- 
-            <input [ngClass]="{'is-invalid': submited && registrationForm.get('skills').errors, 
-            'is-valid': submited && !registrationForm.get('skills').errors}" type="text" class="form-control mt-2"
-                formControlName="skills"> -->
-            <!-- <div *ngIf="registrationForm.get('skills').invalid && registrationForm.get('skills').touched">
-                <small *ngIf="registrationForm.get('skills').errors.required" class="text-danger">Skills is
-                    required</small>
-            </div> -->
         </div>
 
         <!-- Experiences Professionnelles -->
@@ -85,7 +78,12 @@
             <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddexppros()">+ Add
                 Expérience</button>
             <div *ngFor="let exppro of exppros.controls; let i=index">
-                <input type="text" class="form-control mt-2" [formControlName]="i">
+                <input type="text" class="form-control mt-2" [formControlName]="i" [ngClass]="{'is-invalid': submited && exppro.errors, 
+                'is-valid': submited && exppro.errors}">
+                <div class="invalid-feedback d-block" *ngIf="submited && exppro.errors">
+                    <small *ngIf="exppro.errors.required">Expérience Professionnelle is
+                        required</small>
+                </div>
                 <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppexppros(i)">-
                     Delete</button>
             </div>
@@ -96,10 +94,10 @@
             <!-- <input [ngClass]="{'is-invalid': submited && registrationForm.get('exppros').errors, 
             'is-valid': submited && !registrationForm.get('exppros').errors}" type="text" class="form-control mt-2"
                 formControlName="exppros">
-            <div *ngIf="registrationForm.get('exppros').invalid && registrationForm.get('exppros').touched">
+             <div *ngIf="registrationForm.get('exppros').invalid && registrationForm.get('exppros').touched">
                 <small *ngIf="registrationForm.get('exppros').errors.required" class="text-danger">Expérience pro is
                     required</small>
-            </div> -->
+            </div>  -->
         </div>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
