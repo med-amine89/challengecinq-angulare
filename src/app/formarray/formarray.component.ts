@@ -36,15 +36,25 @@ export class FormarrayComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&]).{0,8}$")]),
       name: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      skills: new FormArray([]),
-      exppros: new FormArray([])
+      skills: new FormArray([new FormControl('', [Validators.required])]),
+      exppros: new FormArray([new FormControl('', [Validators.required])])
     });
 
   }
 
+  get skills(): FormArray
+  {
+    return this.registrationForm.get('skills') as FormArray;
+  }
+ get exppros() : FormArray
+ {
+   return this.registrationForm.get('exppros') as FormArray;
+ }
 
   //  fonction submit 
   onSubmit() {
+    console.log(this.skills.value);
+    
     this.submited = true;
     if (this.registrationForm.value.invalid) {
       return;
@@ -56,13 +66,15 @@ export class FormarrayComponent implements OnInit {
   // fonction add skills
   onAddskills() {
 
-    (<FormArray>this.registrationForm.get('skills')).push(new FormControl(''))
+    // (<FormArray>this.registrationForm.get('skills')).push(new FormControl(''))
+    this.skills.push(new FormControl('',[Validators.required]))
   }
 
   // fonction add experiences pro
 
   onAddexppros() {
-    (<FormArray>this.registrationForm.get('exppros')).push(new FormControl(''))
+    // (<FormArray>this.registrationForm.get('exppros')).push(new FormControl(''))
+    this.exppros.push(new FormControl('',[Validators.required]))
   }
 
   // fonction supprimer champ skills

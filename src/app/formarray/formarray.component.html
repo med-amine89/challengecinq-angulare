@@ -58,54 +58,60 @@
         <!-- skills -->
         <div class="form-group" formArrayName="skills">
             <label>skills</label>
-            <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddskills(index)">+ Add
+            <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddskills()">+ Add
                 skills</button>
-            <input *ngFor="let skill of registrationForm.get('skills').controls; let i=index" type="text"
-                class="form-control mt-2" formControlName={{i}}>
+            <div *ngFor="let skill of skills.controls; let i=index">
+                <input type="text" class="form-control mt-2" [formControlName]="i">
+                <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppskills(i)">Delete</button>
+            </div>
 
-            <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('skills').length">
-            <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppskills(i)">- Delete</button>
 
+            <!-- <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('skills').length"> -->
+
+            <!-- 
             <input [ngClass]="{'is-invalid': submited && registrationForm.get('skills').errors, 
             'is-valid': submited && !registrationForm.get('skills').errors}" type="text" class="form-control mt-2"
-                formControlName="skills">
-            <div *ngIf="registrationForm.get('skills').invalid && registrationForm.get('skills').touched">
+                formControlName="skills"> -->
+            <!-- <div *ngIf="registrationForm.get('skills').invalid && registrationForm.get('skills').touched">
                 <small *ngIf="registrationForm.get('skills').errors.required" class="text-danger">Skills is
                     required</small>
-            </div>
+            </div> -->
         </div>
 
         <!-- Experiences Professionnelles -->
+
         <div class="form-group" formArrayName="exppros">
             <label>Expériences Professionnelles</label>
-
             <button type="button" class="btn btn-success btn-sm mx-3 mb-2" (click)="onAddexppros()">+ Add
                 Expérience</button>
-            <input *ngFor="let exppro of registrationForm.get('exppros').controls; let i=index" type="text"
-                class="form-control mt-2" formControlName={{i}}>
+            <div *ngFor="let exppro of exppros.controls; let i=index">
+                <input type="text" class="form-control mt-2" [formControlName]="i">
+                <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppexppros(i)">-
+                    Delete</button>
+            </div>
 
-            <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('exppros').length">
-            <button type="button" class="btn btn-danger btn-sm mb-2 mt-1" (click)="onsuppexppros(i)">- Delete</button>
+            <!-- <input type="text" class="form-control mt-2" *ngIf="registrationForm.get('exppros').length"> -->
 
-            <input [ngClass]="{'is-invalid': submited && registrationForm.get('exppros').errors, 
+
+            <!-- <input [ngClass]="{'is-invalid': submited && registrationForm.get('exppros').errors, 
             'is-valid': submited && !registrationForm.get('exppros').errors}" type="text" class="form-control mt-2"
                 formControlName="exppros">
             <div *ngIf="registrationForm.get('exppros').invalid && registrationForm.get('exppros').touched">
                 <small *ngIf="registrationForm.get('exppros').errors.required" class="text-danger">Expérience pro is
                     required</small>
-            </div>
+            </div> -->
         </div>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
         <button type="button" class="btn btn-info mx-2" (click)="onsavejson()">Save Json</button>
-        
+
     </form>
 </div>
-    <br>
+<br>
 
-    <!-- Tableau -->
-    <div class="container">
-        <button type="button" class="btn btn-warning mb-2" (click)="onsavetab()">save tab</button>
+<!-- Tableau -->
+<div class="container">
+    <button type="button" class="btn btn-warning mb-2" (click)="onsavetab()">save tab</button>
     <table class="table table-bordered">
         <thead>
             <tr class="bg-light">
